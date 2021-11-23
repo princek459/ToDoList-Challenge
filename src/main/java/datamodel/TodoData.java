@@ -22,18 +22,27 @@ public class TodoData {
     private DateTimeFormatter formatter;
 
     public static TodoData getInstance() {
+
         return instance;
     }
 
     private TodoData() {
+
         formatter =  DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
     public List<TodoItem> getTodoItems() {
+
         return todoItems;
     }
 
+    public void addTodoItem(TodoItem item) {
+        todoItems.add(item);
+    }
+
+
     public void setTodoItems(List<TodoItem> todoItems) {
+
         this.todoItems = todoItems;
     }
 
@@ -66,7 +75,7 @@ public class TodoData {
 
     public void storeTodoItems() throws IOException {
 
-        
+
         Path path = Paths.get(filename);
         BufferedWriter bw = Files.newBufferedWriter(path);
 
@@ -87,12 +96,6 @@ public class TodoData {
             }
         }
     }
-
-
-
-
-
-
 
 
 
