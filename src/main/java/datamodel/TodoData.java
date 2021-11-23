@@ -37,14 +37,11 @@ public class TodoData {
     }
 
     public void addTodoItem(TodoItem item) {
+
         todoItems.add(item);
     }
 
 
-    public void setTodoItems(ObservableList<TodoItem> todoItems) {
-
-        this.todoItems = todoItems;
-    }
 
     public void loadTodoItems() throws IOException {
 
@@ -80,9 +77,9 @@ public class TodoData {
         BufferedWriter bw = Files.newBufferedWriter(path);
 
         try{
-            Iterator<TodoItem> iter = todoItems.iterator();
+            Iterator iter = todoItems.iterator();
             while(iter.hasNext()){
-                TodoItem item = iter.next();
+                TodoItem item = (TodoItem) iter.next();
                 bw.write(String.format("%s\t%S\t%s",
                         item.getShortDescription(),
                         item.getDetails(),
@@ -97,6 +94,8 @@ public class TodoData {
         }
     }
 
-
+    public void deleteTodoItem(TodoItem item) {
+        todoItems.remove(item);
+    }
 
 }
